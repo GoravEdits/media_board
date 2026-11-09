@@ -4,7 +4,7 @@
      --green-soft: #e7efe9;
      --cream: #f8f5ed;
      --sand: #e7ddc9;
-     --gold: #b99454;
+     --gold: #ff6a00;
      --ink: #1c2a24;
      --muted: #718078;
      --radius: 17px
@@ -315,3 +315,52 @@
          padding-top: 27px
      }
  }
+
+ 
+/* Informational content labels */
+.filter-chip {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 28px 0;
+}
+
+.page-button {
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--sand);
+    border-radius: 10px;
+    background: white;
+    color: var(--green);
+    font: 600 .78rem "DM Sans", sans-serif;
+    cursor: pointer;
+}
+
+.page-button:hover:not(:disabled) {
+    background: var(--green-soft);
+}
+
+.page-button.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+}
+
+.page-button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.page-button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
