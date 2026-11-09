@@ -4,7 +4,7 @@
      --green-soft: #e7efe9;
      --cream: #f8f5ed;
      --sand: #e7ddc9;
-     --gold: #ff6a00;
+     --safron: #ff6a00;
      --ink: #1c2a24;
      --muted: #718078;
      --radius: 17px
@@ -50,11 +50,11 @@
  }
 
  .brand-mark em {
-     color: var(--gold)
+     color: var(--safron)
  }
 
  .brand-symbol {
-     color: var(--gold);
+     color: var(--safron);
      font-size: 1.7rem
  }
 
@@ -77,7 +77,7 @@
      display: flex;
      align-items: center;
      gap: 9px;
-     color: var(--gold);
+     color: var(--safron);
      font-size: .65rem;
      font-weight: 700;
      letter-spacing: .18em
@@ -86,7 +86,7 @@
  .eyebrow span {
      width: 22px;
      height: 1px;
-     background: var(--gold)
+     background: var(--safron)
  }
 
  .gallery-intro h1 {
@@ -99,7 +99,7 @@
  }
 
  .gallery-intro h1 i {
-     color: var(--gold)
+     color: var(--safron)
  }
 
  .gallery-intro p {
@@ -155,7 +155,7 @@
  .filter-chip:focus-visible,
  .action-button:focus-visible,
  select:focus-visible {
-     outline: 2px solid var(--gold);
+     outline: 2px solid var(--safron);
      outline-offset: 2px
  }
 
@@ -257,7 +257,7 @@
  }
 
  .footer-ornament {
-     color: var(--gold);
+     color: var(--safron);
      font-size: 1.1rem
  }
 
@@ -361,6 +361,6 @@
 }
 
 .page-button:focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--safron);
     outline-offset: 3px;
 }
