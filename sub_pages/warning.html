@@ -331,8 +331,6 @@
             <div id="fullscreenError" class="error-message">
                 Fullscreen could not be activated. Your browser may
                 have blocked the request.
-
-                You can try again or continue without fullscreen.
             </div>
 
             <div class="actions">
@@ -349,104 +347,187 @@
 
         </section>
 
+
+<!-- FULLSCREEN ONLY: shown after warnings have already been accepted -->
+<section class="step" id="fullscreenOnlyStep">
+    <div class="eyebrow">Welcome back</div>
+    <h1>Ready to enter?</h1>
+
+    <p class="description">
+        Your previous warning acknowledgements have been saved.
+        You only need to choose whether to enter fullscreen mode.
+    </p>
+
+    <div id="fullscreenOnlyError" class="error-message">
+        Fullscreen could not be activated. You can try again.
+    </div>
+
+    <div class="actions">
+        <button class="primary" id="fullscreenOnlyButton">
+            Enter website
+        </button>
+    </div>
+
+</section>        
+
     </main>
 
     <script>
-        (function () {
-            "use strict";
+ 
+(function () {
+    "use strict";
 
-            const steps = Array.from(
-                document.querySelectorAll(".step")
-            );
+    const WARNING_KEY = "galleryWarningsAccepted";
 
-            const progress = document.querySelectorAll(
-                "#progress span"
-            );
+    const steps = Array.from(
+        document.querySelectorAll(".step")
+    );
 
-            const agree2 = document.getElementById("agreeWarning2");
-            const agree3 = document.getElementById("agreeWarning3");
+    const progress = document.querySelectorAll("#progress span");
 
-            const enterButton = document.getElementById("enterButton");
+    const agree2 = document.getElementById("agreeWarning2");
+    const agree3 = document.getElementById("agreeWarning3");
 
-            const errorMessage = document.getElementById(
-                "fullscreenError"
-            );
+    const enterButton = document.getElementById("enterButton");
+    const errorMessage = document.getElementById("fullscreenError");
 
-            let currentStep = 0;
+    const fullscreenOnlyStep = document.getElementById(
+        "fullscreenOnlyStep"
+    );
 
-            function showStep(index) {
-                currentStep = index;
+    const fullscreenOnlyButton = document.getElementById(
+        "fullscreenOnlyButton"
+    );
 
-                steps.forEach(function (step, i) {
-                    step.classList.toggle("active", i === index);
-                });
+    const fullscreenOnlyError = document.getElementById(
+        "fullscreenOnlyError"
+    );
 
-                progress.forEach(function (bar, i) {
-                    bar.classList.toggle("active", i <= index);
-                });
+    let currentStep = 0;
+    let storageAvailable = true;
 
-                errorMessage.classList.remove("visible");
+    // Always use the main gallery page's storage.
+    function getWarningAcceptance() {
+        try {
+            return window.parent.localStorage.getItem(WARNING_KEY) === "true";
+        } catch (error) {
+            storageAvailable = false;
+            console.error("Could not read warning acceptance:", error);
+            return false;
+        }
+    }
+
+    function saveWarningAcceptance() {
+        try {
+            window.parent.localStorage.setItem(WARNING_KEY, "true");
+            return true;
+        } catch (error) {
+            storageAvailable = false;
+            console.error("Could not save warning acceptance:", error);
+            return false;
+        }
+    }
+
+    function showStep(index) {
+        currentStep = index;
+
+        steps.forEach(function (step, i) {
+            step.classList.toggle("active", i === index);
+        });
+
+        progress.forEach(function (bar, i) {
+            bar.classList.toggle("active", i <= index);
+        });
+
+        errorMessage.classList.remove("visible");
+    }
+
+    function updateAgreement() {
+        enterButton.disabled = !(
+            agree2.checked && agree3.checked
+        );
+    }
+
+    function requestFullscreen(errorElement) {
+        errorElement.classList.remove("visible");
+
+        if (typeof window.parent.enterGallery !== "function") {
+            errorElement.textContent =
+                "Unable to communicate with the main gallery page.";
+
+            errorElement.classList.add("visible");
+            return;
+        }
+
+        window.parent.enterGallery().catch(function (error) {
+            console.error("Fullscreen request failed:", error);
+            errorElement.classList.add("visible");
+        });
+    }
+
+    // RETURNING VISITOR
+    if (getWarningAcceptance()) {
+        steps.forEach(function (step) {
+            step.classList.remove("active");
+        });
+
+        fullscreenOnlyStep.classList.add("active");
+
+        document.getElementById("progress").hidden = true;
+
+        fullscreenOnlyButton.addEventListener("click", function () {
+            requestFullscreen(fullscreenOnlyError);
+        });
+
+        return;
+    }
+
+    // FIRST VISIT
+    showStep(0);
+
+    document.querySelectorAll(".next-button").forEach(function (button) {
+        button.addEventListener("click", function () {
+            if (currentStep < 3) {
+                showStep(currentStep + 1);
             }
+        });
+    });
 
-            document.querySelectorAll(".next-button").forEach(
-                function (button) {
-                    button.addEventListener("click", function () {
-                        if (currentStep < steps.length - 1) {
-                            showStep(currentStep + 1);
-                        }
-                    });
-                }
-            );
-
-            document.querySelectorAll(".back-button").forEach(
-                function (button) {
-                    button.addEventListener("click", function () {
-                        if (currentStep > 0) {
-                            showStep(currentStep - 1);
-                        }
-                    });
-                }
-            );
-
-            function updateAgreement() {
-                enterButton.disabled = !(
-                    agree2.checked && agree3.checked
-                );
+    document.querySelectorAll(".back-button").forEach(function (button) {
+        button.addEventListener("click", function () {
+            if (currentStep > 0) {
+                showStep(currentStep - 1);
             }
+        });
+    });
 
-            agree2.addEventListener("change", updateAgreement);
-            agree3.addEventListener("change", updateAgreement);
+    agree2.addEventListener("change", updateAgreement);
+    agree3.addEventListener("change", updateAgreement);
 
-            enterButton.addEventListener("click", function () {
-                if (!agree2.checked || !agree3.checked) {
-                    return;
-                }
+    enterButton.addEventListener("click", function () {
+        if (!agree2.checked || !agree3.checked) {
+            return;
+        }
 
-                if (
-                    typeof window.parent.enterGallery !== "function"
-                ) {
-                    errorMessage.textContent =
-                        "Unable to communicate with the main gallery page.";
-                    errorMessage.classList.add("visible");
-                    return;
-                }
+        if (!saveWarningAcceptance()) {
+            errorMessage.textContent =
+                "Your agreement could not be saved. Please enable browser storage and try again.";
 
-                window.parent.enterGallery().catch(function (error) {
-                    console.error("Fullscreen request failed:", error);
+            errorMessage.classList.add("visible");
+            return;
+        }
 
-                    errorMessage.classList.add("visible");
-                });
-            });
+        requestFullscreen(errorMessage);
+    });
 
+    document.getElementById("declineVisit").addEventListener(
+        "click",
+        function () {
+            window.location.href = "https://www.google.com/";
+        }
+    );
+})();
 
-const declineButton = document.getElementById("declineVisit");
-
-declineButton.addEventListener("click", function () {
-    window.location.href = "https://www.google.com/";
-});
-
-
-        })();
 
     </script>
 
