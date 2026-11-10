@@ -1,7 +1,11 @@
-chatGPT, we have to implement the jquery & remove vanilla js completely from this.
-we will have the jquery physical file in our codebase instead of cdn link in media_board\libs folder.
+thats excellent. 
+lets do this
 
-do this.
-1. keep physical boostrap & jquery file in libs folder.
-2. replace the boostrap reference from online cdn to our folder
-3. replace all js with jquery 
+use sub_pages\warning.html file, when user enters the website. it will be ask 3 differenct warnings.
+each warning will pass transition to next warning
+
+1. we need full screen to allow better user experience
+2. place holder warning
+3. place holder warning
+4. it will show user the 2nd & 3rd warning & they are aggreed => requestFullscreen() => enters the main page
+

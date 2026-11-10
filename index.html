@@ -59,56 +59,64 @@
 
 <body>
 
-  <header class="site-header">
-    <nav class="navbar">
-      <div class="container-fluid px-3 px-lg-4">
-        <a href="index.html" class="brand-mark">
-          <img src="./media/logo/gedithijab.png" alt="" width="30">
-          <span><em>Gorav</em> Edits</span>
-        </a>
-        <p>These are just wacky edits made with references. Don't take them too seriously, just enjoy the pace.</p>
-      </div>
-    </nav>
-  </header>
+  <div id="galleryApp" hidden>
 
-  <main class="gallery-shell container-fluid px-3 px-lg-4" id="gallery">
+    <header class="site-header">
+      <nav class="navbar">
+        <div class="container-fluid px-3 px-lg-4">
+          <a href="index.html" class="brand-mark">
+            <img src="./media/logo/gedithijab.png" alt="" width="30">
+            <span><em>Gorav</em> Edits</span>
+          </a>
+          <p>These are just wacky edits made with references. Don't take them too seriously, just enjoy the pace.</p>
+        </div>
+      </nav>
+    </header>
 
-    <section class="gallery-intro">
-      <div class="eyebrow"><span></span> LOVE KNOWS NO BORDERS</div>
-      <h1>Edits beyond <i>boundaries.</i></h1>
-      <p>A collection of moments, moods, and connections across cultures.</p>
-    </section>
+    <main class="gallery-shell container-fluid px-3 px-lg-4" id="gallery">
 
-    <section class="gallery-controls">
-      <div class="filter-group">
-        <span class="control-label">Showing</span>
-        <span class="filter-chip active">Images</span>
-        <span class="filter-chip active">SFW</span>
-      </div>
-    </section>
+      <section class="gallery-intro">
+        <div class="eyebrow"><span></span> LOVE KNOWS NO BORDERS</div>
+        <h1>Edits beyond <i>boundaries.</i></h1>
+        <p>A collection of moments, moods, and connections across cultures.</p>
+      </section>
 
-    <p class="results-count" id="resultsCount" aria-live="polite"></p>
+      <section class="gallery-controls">
+        <div class="filter-group">
+          <span class="control-label">Showing</span>
+          <span class="filter-chip active">Images</span>
+          <span class="filter-chip active">SFW</span>
+        </div>
+      </section>
 
-    <section class="masonry-grid" id="mediaGrid" aria-label="Media gallery"></section>
+      <p class="results-count" id="resultsCount" aria-live="polite"></p>
 
-    <nav class="pagination" id="pagination" aria-label="Gallery pages"></nav>
+      <section class="masonry-grid" id="mediaGrid" aria-label="Media gallery"></section>
 
-    <p class="empty-state" id="emptyState" hidden>
-      No images available.
-    </p>
+      <nav class="pagination" id="pagination" aria-label="Gallery pages"></nav>
 
-  </main>
+      <p class="empty-state" id="emptyState" hidden>
+        No images available.
+      </p>
 
-  <footer class="site-footer">
-    <span class="footer-ornament">❧</span>
-    <span>Made with respect, warmth &amp; an open heart.</span>
-    <span class="footer-ornament">❧</span>
-  </footer>
+    </main>
 
-<script src="libs/jquery/jquery-3.7.1.js"></script>
-<script src="libs/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
-<script src="sub_scripts/app.js"></script>
+    <footer class="site-footer">
+      <span class="footer-ornament">❧</span>
+      <span>Made with respect, warmth &amp; an open heart.</span>
+      <span class="footer-ornament">❧</span>
+    </footer>
+
+  </div>
+
+  <!-- Initial warning screen -->
+  <iframe id="warningFrame" src="sub_pages/warning.html" title="Gallery entry warnings" allow="fullscreen">
+  </iframe>
+
+  <script src="libs/jquery/jquery-3.7.1.js"></script>
+  <script src="libs/bootstrap-4.3.1-dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script src="sub_scripts/app.js"></script>
 </body>
 
 </html>

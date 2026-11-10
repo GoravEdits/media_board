@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#123d32">
+
+    <title>Before You Enter | Gorav Edits</title>
+
+    <style>
+        :root {
+            --green: #123d32;
+            --green-deep: #0b2d26;
+            --cream: #f8f5ed;
+            --sand: #e7ddc9;
+            --saffron: #ff6a00;
+            --ink: #1c2a24;
+            --muted: #718078;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            color: var(--ink);
+            background:
+                radial-gradient(ellipse at 4% 8%,
+                    rgba(185, 148, 84, .12),
+                    transparent 27rem),
+                var(--cream);
+            font-family: Arial, sans-serif;
+        }
+
+        .warning-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 36px;
+            border: 1px solid var(--sand);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .85);
+            box-shadow: 0 18px 55px rgba(11, 45, 38, .09);
+        }
+
+        .brand {
+            margin-bottom: 30px;
+            color: var(--green);
+            font-family: Georgia, serif;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .brand span {
+            color: var(--saffron);
+        }
+
+        .progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .progress span {
+            height: 4px;
+            flex: 1;
+            border-radius: 10px;
+            background: var(--sand);
+            transition: background .3s ease;
+        }
+
+        .progress span.active {
+            background: var(--saffron);
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn .35s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .eyebrow {
+            margin-bottom: 12px;
+            color: var(--saffron);
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            color: var(--green);
+            font-family: Georgia, serif;
+            font-size: clamp(25px, 5vw, 34px);
+            line-height: 1.2;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .warning-box {
+            margin: 22px 0;
+            padding: 17px;
+            border-left: 3px solid var(--saffron);
+            border-radius: 5px;
+            background: var(--cream);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        button {
+            min-height: 44px;
+            padding: 0 22px;
+            border: 1px solid var(--sand);
+            border-radius: 999px;
+            background: white;
+            color: var(--green);
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        button.primary {
+            border-color: var(--green);
+            background: var(--green);
+            color: white;
+        }
+
+        button.primary:hover {
+            background: var(--green-deep);
+        }
+
+        button:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+
+        .agreement {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            margin: 16px 0;
+            color: var(--ink);
+            font-size: 14px;
+            line-height: 1.6;
+            cursor: pointer;
+        }
+
+        .agreement input {
+            width: 17px;
+            height: 17px;
+            margin-top: 2px;
+            accent-color: var(--green);
+            flex-shrink: 0;
+        }
+
+        .error-message {
+            display: none;
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #fff0e8;
+            color: #9b3e12;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .warning-container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="warning-container">
+
+        <div class="brand">
+            Gorav <span>Edits</span>
+        </div>
+
+        <div class="progress" id="progress">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- STEP 1 -->
+        <section class="step active" data-step="0">
+            <div class="eyebrow">Before entering</div>
+
+            <h1>A better viewing experience.</h1>
+
+            <p class="description">
+                We recommend fullscreen mode for a more immersive,
+                comfortable and distraction-free experience.
+            </p>
+
+            <div class="actions">
+                <button class="primary next-button">Continue</button>
+            </div>
+        </section>
+
+
+        <!-- STEP 2 -->
+        <section class="step" data-step="1">
+            <div class="eyebrow">Mature & Adult Content</div>
+            <h1>Possible Explicit Content</h1>
+            <p class="description">
+                Please be aware that this website may contain material intended
+                for mature audiences. Some content may include adult themes,
+                suggestive imagery, explicit language, or other material that
+                may not be suitable for all viewers.
+            </p>
+
+            <div class="warning-box">
+                By continuing, you acknowledge that you may encounter mature
+                or adult-oriented material. If you are under 18 years of age,
+                or are uncomfortable viewing such content, please leave this
+                website.
+            </div>
+
+            <div class="actions">
+                <button class="back-button">Back</button>
+                <button class="primary next-button">I Understand · Continue</button>
+            </div>
+        </section>
+
+
+        <!-- STEP 3 -->
+        <section class="step" data-step="2">
+            <div class="eyebrow">Not For All</div>
+
+            <h1>Religious & Sensitive Content</h1>
+
+            <p class="description">
+                Please be aware that this website may contain material,
+                discussions, opinions, or perspectives that could be
+                perceived as critical of Islam or may conflict with
+                certain Islamic beliefs and values.
+            </p>
+
+            <div class="warning-box">
+                This content may not be suitable or comfortable for everyone.
+                If you feel uncomfortable with such material or prefer not
+                to engage with it, you are absolutely free to leave.
+                We simply ask everyone to respect others' choices and allow
+                those who wish to explore the content to do so peacefully
+                and respectfully.
+            </div>
+
+            <div class="actions">
+                <button class="back-button">Back</button>
+                <button class="primary next-button">Review &amp; Agree</button>
+            </div>
+        </section>
+
+
+        <!-- STEP 4 -->
+        <section class="step" data-step="3">
+            <div class="eyebrow">Final confirmation</div>
+
+            <h1>Before you enter...</h1>
+
+            <p class="description">
+                Please review and confirm that you understand
+                both warnings below.
+            </p>
+
+            <div class="warning-box">
+                <strong>Possible Explicit Content</strong>
+                <p>
+                    Website may contain material intended for mature audiences.
+                </p>
+                <strong>Religious & Sensitive Content</strong>
+                <p>
+                    Website may contain material that may perceived as critical of Islam.
+                </p>
+            </div>
+
+            <label class="agreement">
+                <input type="checkbox" id="agreeWarning2">
+                <span>I have read and agree Explicit content warning</span>
+            </label>
+
+            <label class="agreement">
+                <input type="checkbox" id="agreeWarning3">
+                <span>I have read and agree Anti-Religious content warning</span>
+            </label>
+
+            <div id="fullscreenError" class="error-message">
+                Fullscreen could not be activated. Your browser may
+                have blocked the request.
+
+                You can try again or continue without fullscreen.
+            </div>
+
+            <div class="actions">
+                <button class="back-button">Back</button>
+
+                <button class="primary" id="enterButton" disabled>
+                    Enter Gallery
+                </button>
+            </div>
+
+            <button type="button" id="declineVisit" class="decline-button">
+                I do not want to visit
+            </button>
+
+        </section>
+
+    </main>
+
+    <script>
+        (function () {
+            "use strict";
+
+            const steps = Array.from(
+                document.querySelectorAll(".step")
+            );
+
+            const progress = document.querySelectorAll(
+                "#progress span"
+            );
+
+            const agree2 = document.getElementById("agreeWarning2");
+            const agree3 = document.getElementById("agreeWarning3");
+
+            const enterButton = document.getElementById("enterButton");
+
+            const errorMessage = document.getElementById(
+                "fullscreenError"
+            );
+
+            let currentStep = 0;
+
+            function showStep(index) {
+                currentStep = index;
+
+                steps.forEach(function (step, i) {
+                    step.classList.toggle("active", i === index);
+                });
+
+                progress.forEach(function (bar, i) {
+                    bar.classList.toggle("active", i <= index);
+                });
+
+                errorMessage.classList.remove("visible");
+            }
+
+            document.querySelectorAll(".next-button").forEach(
+                function (button) {
+                    button.addEventListener("click", function () {
+                        if (currentStep < steps.length - 1) {
+                            showStep(currentStep + 1);
+                        }
+                    });
+                }
+            );
+
+            document.querySelectorAll(".back-button").forEach(
+                function (button) {
+                    button.addEventListener("click", function () {
+                        if (currentStep > 0) {
+                            showStep(currentStep - 1);
+                        }
+                    });
+                }
+            );
+
+            function updateAgreement() {
+                enterButton.disabled = !(
+                    agree2.checked && agree3.checked
+                );
+            }
+
+            agree2.addEventListener("change", updateAgreement);
+            agree3.addEventListener("change", updateAgreement);
+
+            enterButton.addEventListener("click", function () {
+                if (!agree2.checked || !agree3.checked) {
+                    return;
+                }
+
+                if (
+                    typeof window.parent.enterGallery !== "function"
+                ) {
+                    errorMessage.textContent =
+                        "Unable to communicate with the main gallery page.";
+                    errorMessage.classList.add("visible");
+                    return;
+                }
+
+                window.parent.enterGallery().catch(function (error) {
+                    console.error("Fullscreen request failed:", error);
+
+                    errorMessage.classList.add("visible");
+                });
+            });
+
+
+const declineButton = document.getElementById("declineVisit");
+
+declineButton.addEventListener("click", function () {
+    window.location.href = "https://www.google.com/";
+});
+
+
+        })();
+
+    </script>
+
+</body>
+
+</html>

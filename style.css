@@ -364,3 +364,23 @@
     outline: 2px solid var(--safron);
     outline-offset: 3px;
 }
+
+/* Main gallery entry control */
+
+#galleryApp[hidden] {
+    display: none !important;
+}
+
+/* Warning page overlay */
+
+#warningFrame {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    background: var(--cream);
+}

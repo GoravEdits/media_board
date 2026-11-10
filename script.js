@@ -31,4 +31,42 @@
       }
     });
   });
+
+// --------------------------------------------------
+// Gallery entry and fullscreen
+// --------------------------------------------------
+
+window.enterGallery = function () {
+
+    if (
+        !document.fullscreenEnabled ||
+        !document.documentElement.requestFullscreen
+    ) {
+        return Promise.reject(
+            new Error("Fullscreen is not supported or permitted.")
+        );
+    }
+
+    // This call must happen directly from the user's click.
+    return document.documentElement.requestFullscreen()
+        .then(function () {
+
+            $("#galleryApp").prop("hidden", false);
+            $("#warningFrame").remove();
+
+        });
+
+};
+
+
+// Explicit fallback if fullscreen is unavailable.
+window.enterGalleryWithoutFullscreen = function () {
+
+    $("#galleryApp").prop("hidden", false);
+    $("#warningFrame").remove();
+
+};
+
+
+
 })(jQuery);
