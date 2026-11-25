@@ -1,5 +1,5 @@
 ```cmd
-codex "asker\output.md" "C:\Users\gchou\OneDrive\Desktop\GoravEdits\media_board"
+codex "C:\Users\gchou\OneDrive\Desktop\Code\media_board-main\asker\output.md" "C:\Users\gchou\OneDrive\Desktop\Code\media_board-main"
 ```  
 ```cmd
 git add .
