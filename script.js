@@ -68,26 +68,5 @@ window.enterGalleryWithoutFullscreen = function () {
 };
 
 
-// --------------------------------------------------
-// Website bookmark functionality
-// --------------------------------------------------
-
-$("#bookmarkButton").on("click", function () {
-
-    const isMac = /Mac|iPhone|iPad|iPod/i.test(
-        navigator.platform
-    );
-
-    const shortcut = isMac ? "⌘ + D" : "Ctrl + D";
-
-    const message =
-        "Want to bookmark Gorav Edits?\n\n" +
-        "Press " + shortcut +
-        " on your keyboard to save this website " +
-        "to your browser bookmarks.";
-
-    alert(message);
-
-});
 
 })(jQuery);
